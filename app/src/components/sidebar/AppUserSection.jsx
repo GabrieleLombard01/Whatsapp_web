@@ -8,10 +8,10 @@ function UserSection() {
                     </figure>
                     <div className="h6 media-text">Gabriele Lombardo</div>
                 </div>
-                <div class="w-25 text-muted d-flex justify-content-around align-items-center">
-                    <i class="fa-solid fa-circle-notch" role="button"></i>
-                    <i class="fa-solid fa-comment-alt" role="button"></i>
-                    <i class="fa-solid fa-ellipsis-v" role="button"></i> 
+                <div className="w-25 text-muted d-flex justify-content-around align-items-center">
+                    <i className="fa-solid fa-circle-notch" role="button"></i>
+                    <i className="fa-solid fa-comment-alt" role="button"></i>
+                    <i className="fa-solid fa-ellipsis-v" role="button"></i> 
                 </div>
             </div>
         </>
