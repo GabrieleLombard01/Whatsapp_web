@@ -33,7 +33,7 @@ function Layout() {
             {/* CHAT SECTION */}
             <section id="chat" className="col-8 p-0 h-100 bg-chat-color d-flex flex-column ">
               <ChatHeader selectedContact={selectedContact}/>
-              <ChatMessages/>
+              <ChatMessages selectedContact={selectedContact}/>
               <ChatFooter/>
             </section>
 
