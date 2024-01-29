@@ -1,12 +1,17 @@
+import React from 'react';
+import data from '../../data/data.json';  
+
 function UserSection() {
+    const { user } = data;  
+
     return (
         <>
             <div id="user-section" className="flex-shrink-0 d-flex justify-content-between">
                 <div className="media">
                     <figure>
-                        <img src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" alt="Gabriele Lombardo" />
+                        <img src={user.avatar} alt={user.name} /> 
                     </figure>
-                    <div className="h6 media-text">Gabriele Lombardo</div>
+                    <div className="h6 media-text">{user.name}</div> 
                 </div>
                 <div className="w-25 text-muted d-flex justify-content-around align-items-center">
                     <i className="fa-solid fa-circle-notch" role="button"></i>
@@ -15,7 +20,7 @@ function UserSection() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default UserSection
+export default UserSection;
