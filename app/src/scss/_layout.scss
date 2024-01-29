@@ -4,9 +4,16 @@
         linear-gradient(var(--green) 15%, 
         var(--bg-gray) 15%);
 }
-
+#content .container { 
+    height: 90%;
+}
 /*CHAT SECTION*/
 #chat header,
-#chat footer{
+#chat footer,
+#user-section{
     height: 70px;
+}
+/*NOTIFICATIONS*/
+#notifications{
+    height: 80px;
 }
