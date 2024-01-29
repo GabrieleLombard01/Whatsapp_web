@@ -9,6 +9,25 @@
     --light-gray:#eaeaea;
     --darker-gray: #222e35;
 }
-  
+#content .container { 
+    height: 90%;
+}
+#chat {
+    background-color: var(--bg-chat);
+}
+/* Background utils */
+.bg-light-gray {
+    background-color: var(--light-gray);
+}
+.bg-chat-color {
+background-color: var(--bg-chat);
+}
+.bg-light-blue{
+    background-color: var(--light-blue);
+} 
+.bg-chat-image{
+    background-image: url('../assets/img/bg_default.webp');
+    background-size: cover;
+} 
 
 
