@@ -5,9 +5,16 @@ import UserSection from './sidebar/AppUserSection'
 import Notifications from './sidebar/AppNotifications'
 import Search from './sidebar/AppSearch'
 import ContactsList from './sidebar/AppContactsList'
+import data from '../data/data.json';
+import { useState } from 'react'
 
 function Layout() {
   
+  const [selectedContact, setSelectedContact] = useState(null);
+
+    const handleContactClick = (contact) => {
+        setSelectedContact(contact);
+    };
 
     return (
       <>
@@ -20,12 +27,12 @@ function Layout() {
               <UserSection/>
               <Notifications/>
               <Search/>
-              <ContactsList/>
+              <ContactsList onContactClick={handleContactClick}/>
             </section>
 
             {/* CHAT SECTION */}
             <section id="chat" className="col-8 p-0 h-100 bg-chat-color d-flex flex-column ">
-              <ChatHeader/>
+              <ChatHeader selectedContact={selectedContact}/>
               <ChatMessages/>
               <ChatFooter/>
             </section>

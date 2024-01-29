@@ -1,14 +1,13 @@
-function Header() {
+function Header({ selectedContact }) {
     return (
         <>
-            {/* chat header */}
             <header className="bg-light-gray flex-shrink-0 d-flex justify-content-between">
                 <div className="media">
                     <figure>
-                    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww" alt="Michele" />
+                        <img src={selectedContact ? selectedContact.avatar : "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww"} alt={selectedContact ? selectedContact.name : "Michele"} />
                     </figure>
                     <div className="h6 media-text">
-                        <div>Michele</div>
+                        <div>{selectedContact ? selectedContact.name : "Michele"}</div>
                         <div className="mb-0 fw-light">
                             <small>Ultimo accesso: </small>
                         </div>
@@ -21,7 +20,7 @@ function Header() {
                 </div>
             </header>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;
