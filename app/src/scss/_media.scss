@@ -29,3 +29,7 @@
     background-color: #fff;
     border-radius: 50%;
 }
+li.media:hover{
+    cursor: pointer;
+    background-color: var(--light-gray);
+}
