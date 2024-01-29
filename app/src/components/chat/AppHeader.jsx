@@ -7,7 +7,7 @@ function Header({ selectedContact }) {
                         <img src={selectedContact ? selectedContact.avatar : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"} alt={selectedContact ? selectedContact.name : "Michele"} />
                     </figure>
                     <div className="h6 media-text">
-                        <div>{selectedContact ? selectedContact.name : "Michele"}</div>
+                        <div>{selectedContact ? selectedContact.name : "Seleziona contatto"}</div>
                         <div className="mb-0 fw-light">
                             <small>Ultimo accesso: </small>
                         </div>
