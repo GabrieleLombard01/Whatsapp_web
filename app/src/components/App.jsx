@@ -8,9 +8,10 @@ import Search from './sidebar/AppSearch';
 import ContactsList from './sidebar/AppContactsList';
 import data from '../data/data.json';
 
-function Layout() {
+function App() {
     const [selectedContact, setSelectedContact] = useState(null);
     const [contacts, setContacts] = useState(data.contacts);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleContactClick = (contact) => {
         setSelectedContact(contact);
@@ -31,6 +32,14 @@ function Layout() {
         });
     };
 
+    const handleSearchChange = (term) => {
+        setSearchTerm(term);
+    };
+
+    const filteredContacts = contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <>
             <div id="content" className="h-100 d-flex align-items-center justify-content-center">
@@ -41,8 +50,8 @@ function Layout() {
                         <section id="sidebar" className="col-4 p-0 h-100 bg-light-gray d-flex flex-column">
                             <UserSection />
                             <Notifications />
-                            <Search />
-                            <ContactsList onContactClick={handleContactClick} />
+                            <Search onSearchChange={handleSearchChange} />
+                            <ContactsList onContactClick={handleContactClick} contacts={filteredContacts} />
                         </section>
 
                         {/* CHAT SECTION */}
@@ -59,4 +68,4 @@ function Layout() {
     );
 }
 
-export default Layout;
+export default App;

@@ -1,9 +1,7 @@
+// AppContactsList.jsx
 import React from 'react';
-import data from '../../data/data.json';  
 
-function ContactsList({ onContactClick }) {
-    const { contacts } = data;
-
+function ContactsList({ onContactClick, contacts }) {
     return (
         <>
             <div id="contacts-list" className="flex-grow-1 bg-white overflow-auto">
