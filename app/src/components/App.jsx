@@ -34,10 +34,20 @@ function App() {
     try {
       const response = await axios.post(
         `https://localhost:7252/api/Chat/addMessage/${contactId}`,
-        { message, date: new Date(), status: 'sent' }, // Aggiungi date e status
+        { message, date: new Date(), status: 'sent' },
         { headers: { 'Content-Type': 'application/json' } }
       );
+  
+      // Aggiorna i contatti
       setContacts(response.data.contacts);
+  
+      // Cerca il contatto corrispondente
+      const updatedContact = response.data.contacts.find(
+        (contact) => contact.id === contactId
+      );
+  
+      // Chiama la funzione per selezionare il contatto corrispondente
+      handleContactClick(updatedContact);
     } catch (error) {
       console.error('Error sending message:', error);
   
@@ -46,7 +56,6 @@ function App() {
         console.error('Server response data:', error.response.data);
       }
   
-      return updatedContacts;
     }
   };
 
