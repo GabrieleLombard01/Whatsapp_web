@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import data from '../../data/data.json';
+import React, { useState, useEffect } from 'react';
 
 function Messages({ selectedContact }) {
-    const [messages, setMessages] = useState(selectedContact ? selectedContact.messages : []);
+    const [messages, setMessages] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setMessages(selectedContact ? selectedContact.messages : []);
     }, [selectedContact]);
 
@@ -13,7 +12,7 @@ function Messages({ selectedContact }) {
             {/* chat messages */}
             <section className="flex-grow-1 overflow-auto bg-chat-image">
                 <ul className="px-3">
-                    {messages.map(message => (
+                    {messages && messages.map(message => (
                         <li key={message.id} className={`message-container p-3 ${message.status}`}>
                             <div className="message p-2 rounded-3">
                                 <p>{message.message}</p>
@@ -28,3 +27,4 @@ function Messages({ selectedContact }) {
 }
 
 export default Messages;
+

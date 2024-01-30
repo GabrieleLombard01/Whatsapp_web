@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ChatHeader from './chat/AppHeader';
 import ChatMessages from './chat/AppMessages';
 import ChatFooter from './chat/AppFooter';
@@ -6,39 +7,56 @@ import UserSection from './sidebar/AppUserSection';
 import Notifications from './sidebar/AppNotifications';
 import Search from './sidebar/AppSearch';
 import ContactsList from './sidebar/AppContactsList';
-import data from '../data/data.json';
 
 function App() {
-    const [selectedContact, setSelectedContact] = useState(null);
-    const [contacts, setContacts] = useState(data.contacts);
-    const [searchTerm, setSearchTerm] = useState('');
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [contacts, setContacts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const handleContactClick = (contact) => {
-        setSelectedContact(contact);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://localhost:7252/api/Chat');
+        setContacts(response.data.contacts);
+      } catch (error) {
+        console.error('Error fetching data from API:', error);
+      }
     };
 
-    const handleSendMessage = (contactId, message) => {
-        const selectedContactIndex = contacts.findIndex((contact) => contact.id === contactId);
+    fetchData();
+  }, []); 
 
-        setContacts((prevContacts) => {
-            const updatedContacts = [...prevContacts];
-            updatedContacts[selectedContactIndex].messages.push({
-                id: new Date().toISOString(),
-                date: new Date().toLocaleString(),
-                message,
-                status: 'sent',
-            });
-            return updatedContacts;
-        });
-    };
+  const handleContactClick = (contact) => {
+    setSelectedContact(contact);
+  };
 
-    const handleSearchChange = (term) => {
-        setSearchTerm(term);
-    };
+  const handleSendMessage = async (contactId, message) => {
+    try {
+      const response = await axios.post(
+        `https://localhost:7252/api/Chat/addMessage/${contactId}`,
+        { message, date: new Date(), status: 'sent' }, // Aggiungi date e status
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      setContacts(response.data.contacts);
+    } catch (error) {
+      console.error('Error sending message:', error);
+  
+      if (error.response) {
+        // Se la risposta contiene dati, visualizzali nella console
+        console.error('Server response data:', error.response.data);
+      }
+  
+      return updatedContacts;
+    }
+  };
 
-    const filteredContacts = contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
     return (
         <>
